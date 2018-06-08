@@ -63,10 +63,10 @@
       <PreprocessorDefinitions>SEG_API_DLL;SEG_API_DLL_EXPORT;SEG_API_DEBUG_THROW;GLFW_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
-      <AdditionalIncludeDirectories>..\..\EXTlib\include;$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>extlib\include;$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>..\..\EXTlib\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>extlib\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -81,13 +81,13 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <AdditionalIncludeDirectories>..\..\EXTlib\include;$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>extlib\include;$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
       <EnableUAC>true</EnableUAC>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>..\..\EXTlib\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>extlib\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
     </Link>
