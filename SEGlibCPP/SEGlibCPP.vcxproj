@@ -93,7 +93,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="sources\debug\test.cpp" />
+    <ClCompile Include="sources\libdebug\test.cpp" />
     <ClCompile Include="sources\org\segames\library\array_index_out_of_bounds_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\dllmain.cpp" />
     <ClCompile Include="sources\org\segames\library\exception.cpp" />
