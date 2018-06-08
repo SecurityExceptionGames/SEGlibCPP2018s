@@ -76,33 +76,33 @@ namespace org
 					/*
 						Returns true if the time of one update has passed
 					*/
-					bool time();
+					virtual bool time();
 
 					/*
 						Returns the time difference in seconds between this call and the last
 					*/
-					double deltaTime();
+					virtual double deltaTime();
 
 					/*
 						Returns the timer update rate, in updates per second
 					*/
-					double getUpdateRate() const;
+					virtual double getUpdateRate() const;
 
 					/*
 						Returns the time per update
 					*/
-					double getUpdateTime() const;
+					virtual double getUpdateTime() const;
 
 					/*
 						Sets the update rate of the timer
 						* @param[in] updateRate The rate at which the timer will consider it time to update, negative numbers will make time() allways return false
 					*/
-					void setUpdateRate(const double updateRate);
+					virtual void setUpdateRate(const double updateRate);
 
 					/*
 						Sleeps this thread to synchronize it with the update rate
 					*/
-					void sync();
+					virtual void sync();
 
 				};
 
