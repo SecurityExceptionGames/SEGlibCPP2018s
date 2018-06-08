@@ -8,6 +8,7 @@
 #include <org\segames\library\null_pointer_exception.h>
 #include <org\segames\library\util\array.h>
 #include <org\segames\library\util\array_list.h>
+#include <org\segames\library\util\timer.h>
 
 using namespace org::segames::library;
 using namespace org::segames::library::util;
@@ -20,11 +21,13 @@ int main()
 {
 	try
 	{
+
+		Timer timer(1);
+		Timer dt;
+		while (true)
 		{
-			ArrayList<ArrayList<ArrayList<int>>> a = ArrayList<ArrayList<ArrayList<int>>>(1);
-
-			a.add({ { 1, 2, 3 } });
-
+			std::cout << dt.deltaTime() << std::endl;
+			timer.sync();
 		}
 		
 	}

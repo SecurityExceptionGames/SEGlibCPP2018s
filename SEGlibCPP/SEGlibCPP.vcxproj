@@ -98,15 +98,18 @@
     <ClCompile Include="sources\org\segames\library\dllmain.cpp" />
     <ClCompile Include="sources\org\segames\library\exception.cpp" />
     <ClCompile Include="sources\org\segames\library\index_out_of_bounds_exception.cpp" />
+    <ClCompile Include="sources\org\segames\library\invalid_value_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\memory_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\null_pointer_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\object.cpp" />
+    <ClCompile Include="sources\org\segames\library\util\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\org\segames\library\array_index_out_of_bounds_exception.h" />
     <ClInclude Include="headers\org\segames\library\dllmain.h" />
     <ClInclude Include="headers\org\segames\library\exception.h" />
     <ClInclude Include="headers\org\segames\library\index_out_of_bounds_exception.h" />
+    <ClInclude Include="headers\org\segames\library\invalid_value_exception.h" />
     <ClInclude Include="headers\org\segames\library\library.h" />
     <ClInclude Include="headers\org\segames\library\memory_exception.h" />
     <ClInclude Include="headers\org\segames\library\null_pointer_exception.h" />
@@ -121,6 +124,7 @@
     <ClInclude Include="headers\org\segames\library\util\memory_block.h" />
     <ClInclude Include="headers\org\segames\library\util\pointer_iterator.h" />
     <ClInclude Include="headers\org\segames\library\util\reverse_iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
