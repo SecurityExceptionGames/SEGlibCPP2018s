@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL|Win32">
+      <Configuration>DLL</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL|x64">
+      <Configuration>DLL</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{B1245D0A-A1F8-4781-8245-47C8EDD44414}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SEGlibCPP</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='DLL|Win32'">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='DLL|x64'">
+    <PlatformToolset>v141</PlatformToolset>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL|x64'">
+    <ClCompile>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <PreprocessorDefinitions>SEG_API_DLL;SEG_API_DLL_EXPORT;SEG_API_DEBUG_THROW;GLFW_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <AdditionalIncludeDirectories>..\..\EXTlib\include;$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\EXTlib\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <PreprocessorDefinitions>SEG_API_DEBUG;SEG_API_DEBUG_THROW;DEBUG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalIncludeDirectories>..\..\EXTlib\include;$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <EnableUAC>true</EnableUAC>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>..\..\EXTlib\libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;opengl32.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\debug\test.cpp" />
+    <ClCompile Include="sources\org\segames\library\array_index_out_of_bounds_exception.cpp" />
+    <ClCompile Include="sources\org\segames\library\dllmain.cpp" />
+    <ClCompile Include="sources\org\segames\library\exception.cpp" />
+    <ClCompile Include="sources\org\segames\library\index_out_of_bounds_exception.cpp" />
+    <ClCompile Include="sources\org\segames\library\memory_exception.cpp" />
+    <ClCompile Include="sources\org\segames\library\null_pointer_exception.cpp" />
+    <ClCompile Include="sources\org\segames\library\object.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\org\segames\library\array_index_out_of_bounds_exception.h" />
+    <ClInclude Include="headers\org\segames\library\dllmain.h" />
+    <ClInclude Include="headers\org\segames\library\exception.h" />
+    <ClInclude Include="headers\org\segames\library\index_out_of_bounds_exception.h" />
+    <ClInclude Include="headers\org\segames\library\library.h" />
+    <ClInclude Include="headers\org\segames\library\memory_exception.h" />
+    <ClInclude Include="headers\org\segames\library\null_pointer_exception.h" />
+    <ClInclude Include="headers\org\segames\library\object.h" />
+    <ClInclude Include="headers\org\segames\library\util\array.h" />
+    <ClInclude Include="headers\org\segames\library\util\array_list.h" />
+    <ClInclude Include="headers\org\segames\library\util\bidir_pointer_iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\checked_bidir_pointer_iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\checked_pointer_iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\collection.h" />
+    <ClInclude Include="headers\org\segames\library\util\iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\memory_block.h" />
+    <ClInclude Include="headers\org\segames\library\util\pointer_iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\reverse_iterator.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
