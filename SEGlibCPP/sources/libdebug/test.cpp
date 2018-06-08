@@ -12,6 +12,10 @@
 using namespace org::segames::library;
 using namespace org::segames::library::util;
 
+/*
+	A comment
+*/
+
 int main()
 {
 	try
