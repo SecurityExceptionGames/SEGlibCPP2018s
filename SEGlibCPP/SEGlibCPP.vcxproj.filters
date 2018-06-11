@@ -45,6 +45,9 @@
     <ClCompile Include="sources\org\segames\library\invalid_value_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\org\segames\library\util\thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\org\segames\library\object.h">
@@ -105,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\org\segames\library\invalid_value_exception.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\org\segames\library\util\thread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

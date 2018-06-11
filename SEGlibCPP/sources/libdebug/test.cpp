@@ -9,6 +9,7 @@
 #include <org\segames\library\util\array.h>
 #include <org\segames\library\util\array_list.h>
 #include <org\segames\library\util\timer.h>
+#include <org\segames\library\util\thread.h>
 
 using namespace org::segames::library;
 using namespace org::segames::library::util;
@@ -17,19 +18,32 @@ using namespace org::segames::library::util;
 	A comment
 */
 
+class A :
+	public Runnable
+{
+
+	void run()
+	{
+		std::cout << "This" << " is " << "working" << std::endl;
+		std::cout << "This" << " is " << "working" << std::endl;
+		std::cout << "This" << " is " << "working" << std::endl;
+		std::cout << "This" << " is " << "working" << std::endl;
+		std::cout << "This" << " is " << "working" << std::endl;
+		std::cout << "This" << " is " << "working" << std::endl;
+	}
+
+};
+
 int main()
 {
 	try
 	{
 
-		Timer timer(1);
-		Timer dt;
-		while (true)
-		{
-			std::cout << dt.deltaTime() << std::endl;
-			timer.sync();
-		}
-		
+		A a;
+		Thread myThread(&a);
+
+		myThread.start();
+		std::cout << "A very long" << " string that will" << " hopefully conflict with the thread." << std::endl;
 	}
 	catch (std::exception& e)
 	{

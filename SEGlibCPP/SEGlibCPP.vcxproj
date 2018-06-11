@@ -102,6 +102,7 @@
     <ClCompile Include="sources\org\segames\library\memory_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\null_pointer_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\object.cpp" />
+    <ClCompile Include="sources\org\segames\library\util\thread.cpp" />
     <ClCompile Include="sources\org\segames\library\util\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +125,7 @@
     <ClInclude Include="headers\org\segames\library\util\memory_block.h" />
     <ClInclude Include="headers\org\segames\library\util\pointer_iterator.h" />
     <ClInclude Include="headers\org\segames\library\util\reverse_iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\thread.h" />
     <ClInclude Include="headers\org\segames\library\util\timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
