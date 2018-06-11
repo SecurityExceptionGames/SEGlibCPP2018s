@@ -96,10 +96,21 @@ namespace org
 					/*
 						Moves the iterator one step, as standard same as next()
 					*/
-					PointerIterator<T> operator++(int) {
+					PointerIterator<T> operator++(int)
+					{
 						PointerIterator<T> temp = *this;
 						next();
 						return temp;
+					}
+
+					/*
+						Moves the iterator by the given amount of steps
+						* @param[in] count The amount of steps to move the iterator
+					*/
+					PointerIterator<T>& operator+=(const size_t count)
+					{
+						itrPointer += count;
+						return *this;
 					}
 
 					/*

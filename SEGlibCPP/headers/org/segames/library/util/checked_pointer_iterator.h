@@ -88,6 +88,19 @@ namespace org
 						position++;
 					}
 
+					/*
+						Moves the operator by the given amount of steps
+						* @param[in] count The amount of steps to move the iterator
+					*/
+					CheckedPointerIterator<T>& operator+=(const size_t count)
+					{
+						if ((position + count) > upperLimit)
+							throw IndexOutOfBoundsException("Pointer position has reached the upper limit.");
+						itrPointer += count;
+						position += count;
+						return *this;
+					}
+
 				};
 
 			}

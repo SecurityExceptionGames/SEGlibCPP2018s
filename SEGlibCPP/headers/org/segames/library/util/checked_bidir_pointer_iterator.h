@@ -105,10 +105,22 @@ namespace org
 					/*
 						Moves the iterator one step, as standard same as previous()
 					*/
-					CheckedPointerIterator<T> operator--(int) {
-						CheckedPointerIterator<T> temp = *this;
+					CheckedBidirPointerIterator<T> operator--(int) {
+						CheckedBidirPointerIterator<T> temp = *this;
 						previous();
 						return temp;
+					}
+
+					/*
+						Reverses the iterator the given amount of steps
+						* @param[in] count The amount of steps to move the iterator
+					*/
+					CheckedBidirPointerIterator<T>& operator-=(const size_t count)
+					{
+						if ((position - count) < lowerLimit)
+							throw IndexOutOfBoundsException("Pointer position has reached the lower limit.");
+						itrPointer -= count;
+						position -= count;
 					}
 
 					/*

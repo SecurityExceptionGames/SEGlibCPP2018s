@@ -93,6 +93,16 @@ namespace org
 					}
 
 					/*
+						Reverses the iterator the given amount of steps
+						* @param[in] count The amount of steps to move the iterator
+					*/
+					BidirPointerIterator<T>& operator-=(const size_t count)
+					{
+						itrPointer -= count;
+						return *this;
+					}
+
+					/*
 						Returns true if the given iterator is the same as this one
 						* @param[in] itr The iterator to check with
 					*/
