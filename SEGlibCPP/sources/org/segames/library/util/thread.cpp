@@ -103,8 +103,10 @@ namespace org
 
 				Thread& Thread::operator=(const Thread& obj)
 				{
+#ifdef SEG_API_DEBUG_THROW
 					if (isRunning())
 						throw ThreadException("Cannot copy to a started thread.");
+#endif
 					runnable = obj.runnable;
 					nativeThread = VolatileVar<thread*>(nullptr);
 					return *this;
