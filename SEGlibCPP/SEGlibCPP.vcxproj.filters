@@ -51,6 +51,9 @@
     <ClCompile Include="sources\org\segames\library\io\file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\org\segames\library\util\string_util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\org\segames\library\object.h">
@@ -117,6 +120,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\org\segames\library\io\file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\org\segames\library\util\string_util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\org\segames\library\system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

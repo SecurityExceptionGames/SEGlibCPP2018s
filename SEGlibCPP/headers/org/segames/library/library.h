@@ -15,5 +15,9 @@
 #endif
 
 #ifndef ZERO
-#define ZERO 0				//The number zero
+#define ZERO 0						//The number zero
+#endif
+
+#ifndef PI
+#define PI 3.141592653589793238L	//PI
 #endif
