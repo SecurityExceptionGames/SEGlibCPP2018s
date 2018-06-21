@@ -94,6 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="sources\libdebug\test.cpp" />
+    <ClCompile Include="sources\libdebug\test2.cpp" />
     <ClCompile Include="sources\org\segames\library\array_index_out_of_bounds_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\dllmain.cpp" />
     <ClCompile Include="sources\org\segames\library\exception.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="headers\org\segames\library\invalid_value_exception.h" />
     <ClInclude Include="headers\org\segames\library\io\file.h" />
     <ClInclude Include="headers\org\segames\library\library.h" />
+    <ClInclude Include="headers\org\segames\library\math\vecmath.h" />
     <ClInclude Include="headers\org\segames\library\memory_exception.h" />
     <ClInclude Include="headers\org\segames\library\null_pointer_exception.h" />
     <ClInclude Include="headers\org\segames\library\object.h" />

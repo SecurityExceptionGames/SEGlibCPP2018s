@@ -54,6 +54,9 @@
     <ClCompile Include="sources\org\segames\library\util\string_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\libdebug\test2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\org\segames\library\object.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\org\segames\library\system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\org\segames\library\math\vecmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

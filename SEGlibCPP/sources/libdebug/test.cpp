@@ -7,36 +7,26 @@
 
 #include <org\segames\library\system.h>
 #include <org\segames\library\util\string_util.h>
+#include <org\segames\library\math\vecmath.h>
 
 using namespace org::segames::library;
 using namespace org::segames::library::util;
+using namespace org::segames::library::math;
 
 int main()
 {
 	try
 	{
-		ArrayList<std::string> arr = {
-			"This",
-			"is",
-			"a",
-			"list",
-			"and",
-			"it",
-			"is",
-			"not",
-			"very",
-			"long"
+		vec2 a = { 0, 1 };
+		Vectorf<2> b = { 0, 1 };
+
+		BasicMatrix<double, 2, 2> mat = {
+			{3, 0},
+			{0, 3}
 		};
-		
-		std::string myString = stringConcat("#", arr);
 
-		auto myArr = stringSplit(myString, { "#", "i" });
+		std::cout << ((BasicMatrix<char, 2, 2>)mat) << std::endl;
 
-		for (size_t i = 0; i < myArr.size(); i++)
-			std::cout << myArr.peek(i) << std::endl;
-
-		std::cout << "BIG_ENDIAN? " << bigEndian() << std::endl;
-		
 	}
 	catch (std::exception& e)
 	{
