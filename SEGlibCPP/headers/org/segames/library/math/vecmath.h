@@ -22,7 +22,7 @@ namespace org
 					* @since	2018-06-21
 					* @edited	2018-06-22
 				*/
-				template<class T, int dim> class BasicVector :
+				template<typename T, int dim> class BasicVector :
 					public Object
 				{
 				protected:
@@ -41,23 +41,25 @@ namespace org
 					{}
 
 					/*
-						Initializer list vector constructor. Fills the vector with the given values
-						* @param[in] list The initializer list with the values
+						Vector value constructor. Constructs a vector from the given values
+						* @param[in] items The vector data to place in the vector
 					*/
-					BasicVector(const std::initializer_list<T>& list)
+					template<typename... T2> BasicVector(const T2... items)
 					{
 #ifdef SEG_API_DEBUG_THROW
-						if (list.size() != dimensions())
-							throw InvalidValueException("The size of the given initializer list does not match the vector dimensions.");
+						if (sizeof...(items) != dim)
+							throw InvalidValueException("Number of elements in parameter pack (" + std::to_string(sizeof...(items)) + ") is not equal to the vector dimensions (" + std::to_string(dim) + ").");
 #endif
-						memcpy(data, list.begin(), dimensions() * sizeof(T));
+						T list[sizeof...(items)] = { (T)items... };
+						for (int i = 0; i < dimensions(); i++)
+							data[i] = list[i];
 					}
 
 					/*
 						Cast vector constructor. A constructor that casts one type of vector into another if the element types are castable
 						* @param[in] obj The vector to cast from
 					*/
-					template<class T2> BasicVector(const BasicVector<T2, dim>& obj)
+					template<typename T2> BasicVector(const BasicVector<T2, dim>& obj)
 					{
 						for (int i = 0; i < dimensions(); i++)
 							data[i] = (T)obj.peek(i);
@@ -137,7 +139,7 @@ namespace org
 						Returns true if the the given vector is equal to this one, calls the equals() method
 						* @param[in] obj The vector to check
 					*/
-					template<class T2> inline bool operator==(const BasicVector<T2, dim>& obj) const
+					template<typename T2> inline bool operator==(const BasicVector<T2, dim>& obj) const
 					{
 						return equals(obj);
 					}
@@ -146,7 +148,7 @@ namespace org
 						Returns true if the the given vector is not equal to this one, inverse of operator==
 						* @param[in] obj The vector to check
 					*/
-					template<class T2> inline bool operator!=(const BasicVector<T2, dim>& obj) const
+					template<typename T2> inline bool operator!=(const BasicVector<T2, dim>& obj) const
 					{
 						return !(*this == obj);
 					}
@@ -155,12 +157,45 @@ namespace org
 						Returns true if the the given vector is equal to this one
 						* @param[in] obj The vector to check
 					*/
-					template<class T2> inline bool equals(const BasicVector<T2, dim>& obj) const
+					template<typename T2> inline bool equals(const BasicVector<T2, dim>& obj) const
 					{
 						for (int i = 0; i < dimensions(); i++)
 							if (obj.peek(i) != peek(i))
 								return false;
 						return true;
+					}
+
+					/*
+						Multiplies the vector by the given scalar
+						* @param[in] scalar The scalar to multiply this vector by
+					*/
+					template<typename T2> inline BasicVector<T, dim>& operator*=(const T2 scalar)
+					{
+						for (int i = 0; i < dimensions(); i++)
+							data[i] *= scalar;
+						return *this;
+					}
+
+					/*
+						Adds the given vector to this one
+						* @param[in] obj The vector to add to this one
+					*/
+					template<typename T2> inline BasicVector<T, dim>& operator+=(const BasicVector<T2, dim>& obj)
+					{
+						for (int i = 0; i < dimensions(); i++)
+							data[i] += obj.peek(i);
+						return *this;
+					}
+
+					/*
+						Subtracts the given vector from this one
+						* @param[in] obj The vector to subtract from this one
+					*/
+					template<typename T2> inline BasicVector<T, dim>& operator-=(const BasicVector<T2, dim>& obj)
+					{
+						for (int i = 0; i < dimensions(); i++)
+							data[i] -= obj.peek(i);
+						return *this;
 					}
 
 				};

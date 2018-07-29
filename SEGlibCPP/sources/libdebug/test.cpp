@@ -18,15 +18,16 @@ int main()
 	try
 	{
 		vec2 a = { 0, 1 };
-		Vectorf<2> b = { 0, 1 };
 
 		BasicMatrix<double, 2, 2> mat = {
 			{3, 0},
 			{0, 3}
 		};
 
-		std::cout << ((BasicMatrix<char, 2, 2>)mat) << std::endl;
-
+		std::cout << ((BasicMatrix<int, 2, 2>)mat) << std::endl;
+		std::cout << a << std::endl;
+		a *= 10;
+		std::cout << a << std::endl;
 	}
 	catch (std::exception& e)
 	{
