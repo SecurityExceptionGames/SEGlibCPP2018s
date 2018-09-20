@@ -8,6 +8,7 @@
 #include <org\segames\library\system.h>
 #include <org\segames\library\util\string_util.h>
 #include <org\segames\library\math\vecmath.h>
+#include <org\segames\library\math\math.h>
 
 using namespace org::segames::library;
 using namespace org::segames::library::util;
@@ -17,17 +18,11 @@ int main()
 {
 	try
 	{
-		vec2 a = { 0, 1 };
+		BasicVector<double, 2> a = { 0, 1 };
 
-		BasicMatrix<double, 2, 2> mat = {
-			{3, 0},
-			{0, 3}
-		};
+		std::cout << a << std::endl;
 
-		std::cout << ((BasicMatrix<int, 2, 2>)mat) << std::endl;
-		std::cout << a << std::endl;
-		a *= 10;
-		std::cout << a << std::endl;
+		std::cout << max(5, 8) << std::endl;
 	}
 	catch (std::exception& e)
 	{

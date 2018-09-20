@@ -134,5 +134,8 @@
     <ClInclude Include="headers\org\segames\library\math\vecmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\org\segames\library\math\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

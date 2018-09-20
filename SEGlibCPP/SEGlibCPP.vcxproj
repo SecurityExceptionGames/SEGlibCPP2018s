@@ -116,6 +116,7 @@
     <ClInclude Include="headers\org\segames\library\invalid_value_exception.h" />
     <ClInclude Include="headers\org\segames\library\io\file.h" />
     <ClInclude Include="headers\org\segames\library\library.h" />
+    <ClInclude Include="headers\org\segames\library\math\math.h" />
     <ClInclude Include="headers\org\segames\library\math\vecmath.h" />
     <ClInclude Include="headers\org\segames\library\memory_exception.h" />
     <ClInclude Include="headers\org\segames\library\null_pointer_exception.h" />
