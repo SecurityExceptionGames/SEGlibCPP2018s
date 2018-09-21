@@ -101,6 +101,7 @@
     <ClCompile Include="sources\org\segames\library\index_out_of_bounds_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\invalid_value_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\io\file.cpp" />
+    <ClCompile Include="sources\org\segames\library\math\math.cpp" />
     <ClCompile Include="sources\org\segames\library\memory_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\null_pointer_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\object.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="headers\org\segames\library\util\iterator.h" />
     <ClInclude Include="headers\org\segames\library\util\memory_block.h" />
     <ClInclude Include="headers\org\segames\library\util\pointer_iterator.h" />
+    <ClInclude Include="headers\org\segames\library\util\random.h" />
     <ClInclude Include="headers\org\segames\library\util\reverse_iterator.h" />
     <ClInclude Include="headers\org\segames\library\util\string_util.h" />
     <ClInclude Include="headers\org\segames\library\util\thread.h" />

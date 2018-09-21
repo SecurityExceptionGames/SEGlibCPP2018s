@@ -7,6 +7,7 @@
 
 #include <org\segames\library\system.h>
 #include <org\segames\library\util\string_util.h>
+#include <org/segames/library/util/random.h>
 #include <org\segames\library\math\vecmath.h>
 #include <org\segames\library\math\math.h>
 
@@ -18,11 +19,10 @@ int main()
 {
 	try
 	{
-		BasicVector<double, 2> a = { 0, 1 };
+		BasicVector<double, 3> a = { 1, 0, 0 };
+		BasicVector<double, 3> b = { 0, 1, 0 };
 
-		std::cout << a << std::endl;
-
-		std::cout << max(5, 8) << std::endl;
+		std::cout << cross(a, b) << std::endl;
 	}
 	catch (std::exception& e)
 	{

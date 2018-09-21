@@ -75,6 +75,16 @@ namespace org
 					return t * t * ((T)3.0 - (T)2.0 * t);
 				}
 
+				/*
+					Returns a random value between 0 and 1 with standard floating point precision
+				*/
+				float randomf();
+
+				/*
+					Returns a random value between 0 and 1 with double precision
+				*/
+				double random();
+
 			}
 
 		}
