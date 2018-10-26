@@ -10,6 +10,7 @@
 #include <org/segames/library/util/random.h>
 #include <org\segames\library\math\vecmath.h>
 #include <org\segames\library\math\math.h>
+#include <org/segames/library/core.h>
 
 using namespace org::segames::library;
 using namespace org::segames::library::util;
@@ -19,10 +20,12 @@ int main()
 {
 	try
 	{
-		BasicVector<double, 3> a = { 1, 0, 0 };
-		BasicVector<double, 3> b = { 0, 1, 0 };
+		int a = 0;
+		int b = 5;
 
-		std::cout << cross(a, b) << std::endl;
+		Core::getOut() << "Hello!\r";
+
+		std::cout << &b << " " << &max(a, b) << std::endl;
 	}
 	catch (std::exception& e)
 	{

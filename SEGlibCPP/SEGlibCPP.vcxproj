@@ -96,6 +96,7 @@
     <ClCompile Include="sources\libdebug\test.cpp" />
     <ClCompile Include="sources\libdebug\test2.cpp" />
     <ClCompile Include="sources\org\segames\library\array_index_out_of_bounds_exception.cpp" />
+    <ClCompile Include="sources\org\segames\library\core.cpp" />
     <ClCompile Include="sources\org\segames\library\dllmain.cpp" />
     <ClCompile Include="sources\org\segames\library\exception.cpp" />
     <ClCompile Include="sources\org\segames\library\index_out_of_bounds_exception.cpp" />
@@ -110,7 +111,9 @@
     <ClCompile Include="sources\org\segames\library\util\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fuuff.h" />
     <ClInclude Include="headers\org\segames\library\array_index_out_of_bounds_exception.h" />
+    <ClInclude Include="headers\org\segames\library\core.h" />
     <ClInclude Include="headers\org\segames\library\dllmain.h" />
     <ClInclude Include="headers\org\segames\library\exception.h" />
     <ClInclude Include="headers\org\segames\library\index_out_of_bounds_exception.h" />

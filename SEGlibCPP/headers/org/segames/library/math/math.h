@@ -29,27 +29,47 @@ namespace org
 				}
 
 				/*
-					A function that returns the latter value if it is larger than the former, otherwise it returns the former
-					* @param[in] a The former value
-					* @param[in] b The latter value
+					Returns a reference to the given referenced value
 				*/
-				template<typename T> inline T max(const T a, const T b)
+				template<typename T> inline T& max(T&& val)
 				{
-					if (b > a)
-						return b;
-					return a;
+					return val;
 				}
 
 				/*
-					A function that returns the latter value if it is smaller than the former, otherwise it returns the former
-					* @param[in] a The former value
-					* @param[in] b The latter value
+					A function that returns a reference to the latter value[s] if it is larger than the former, otherwise it returns a reference to the former
+					* @param[in] val The former value
+					* @param[in] vals The latter value[s]
 				*/
-				template<typename T> inline T min(const T a, const T b)
+				template<typename T, typename... T2> inline T& max(T&& val, T2&&... vals)
 				{
-					if (b < a)
-						return b;
-					return a;
+					auto& maxVal = max(vals...);
+					if (maxVal > val)
+						return maxVal;
+					else
+						return val;
+				}
+
+				/*
+					Returns a reference to the given referenced value
+				*/
+				template<typename T> inline T& min(T&& val)
+				{
+					return val;
+				}
+
+				/*
+					A function that returns a reference to the latter value[s] if it is smaller than the former, otherwise it returns a reference to the former
+					* @param[in] val The former value
+					* @param[in] vals The latter value[s]
+				*/
+				template<typename T, typename... T2> inline T& min(T&& val, T2&&... vals)
+				{
+					auto& maxVal = min(vals...);
+					if (maxVal < val)
+						return maxVal;
+					else
+						return val;
 				}
 
 				/*
