@@ -26,7 +26,7 @@ namespace org
 
 				/*
 					Returns a hash-code for the object
-					If not overridden, default is equal to "typeid(this).hash_code()"
+					If not overridden, default is determined from the object memory
 				*/
 				virtual size_t hashCode() const;
 

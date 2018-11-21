@@ -1,5 +1,5 @@
-#include <org/segames/library/math/math.h>
-#include <org/segames/library/util/random.h>
+#include <org\segames\library\math\math.h>
+#include <org\segames\library\util\random.h>
 
 using namespace org::segames::library::util;
 

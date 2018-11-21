@@ -1,5 +1,5 @@
 #pragma once
-#include <org/segames/library/util/timer.h>
+#include <org\segames\library\util\timer.h>
 #include <random>
 
 namespace org

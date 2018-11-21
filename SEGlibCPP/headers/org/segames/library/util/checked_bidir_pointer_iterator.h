@@ -127,7 +127,7 @@ namespace org
 						Returns true if the given iterator is the same as this one
 						* @param[in] itr The iterator to check with
 					*/
-					bool operator==(const CheckedBidirPointerIterator<T>& itr) const
+					bool operator==(const PointerIterator<T>& itr) const
 					{
 						return CheckedPointerIterator<T>::operator==(itr);
 					}
@@ -136,7 +136,7 @@ namespace org
 						Returns true if the given iterator is not the same as this one
 						* @param[in] itr The iterator to check with
 					*/
-					virtual bool operator!=(const CheckedBidirPointerIterator<T>& itr) const
+					virtual bool operator!=(const PointerIterator<T>& itr) const
 					{
 						return CheckedPointerIterator<T>::operator!=(itr);
 					}

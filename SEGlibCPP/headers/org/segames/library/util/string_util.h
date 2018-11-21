@@ -29,6 +29,32 @@ namespace org
 				*/
 				const bool stringEndsWith(const std::string& src, const std::string& expr);
 
+				/*
+					Creates a hash code from the given c-string
+					* @param[in] str The c-string to create a hash from
+				*/
+				inline size_t stringHash(const char* str)
+				{
+					char c;
+					size_t code = 0;
+					for (int i = 0; (c = str[i]) != '\0'; i++)
+					{
+						size_t partCode = 1;
+						for (int e = 0; e <= i; e++)
+							partCode *= 31;
+						code += partCode * c;
+					}
+					return code;
+				}
+
+				/*
+					Creates a hash code from the given string
+					* @param[in] str The string to create a hash from
+				*/
+				inline size_t stringHash(const std::string& str)
+				{
+					return stringHash(str.c_str());
+				}
 
 				/*
 					Concats the strings from the given list
@@ -61,17 +87,17 @@ namespace org
 					* @param[in] first The begining iterator or pointer to a list/array of strings
 					* @param[in] last The ending iterator or pointer
 				*/
-				template<class Itr> inline std::string stringConcat(const std::string& separator, const Itr& first, const Itr& last)
+				template<class ItrBeg, class ItrEnd> inline std::string stringConcat(const std::string& separator, const ItrBeg& first, const ItrEnd& last)
 				{
 					size_t size = ZERO;
-					for (Itr itr = first; itr != last; itr++)
+					for (ItrBeg itr = first; itr != last; itr++)
 						size += (*itr).size() + separator.size();
 					if (size > ZERO)
 						size -= separator.size();
 
 					std::string out;
 					out.reserve(size);
-					for (Itr itr = first; itr != last; itr++)
+					for (ItrBeg itr = first; itr != last; itr++)
 					{
 						std::string& s = *itr;
 						out.append(s);

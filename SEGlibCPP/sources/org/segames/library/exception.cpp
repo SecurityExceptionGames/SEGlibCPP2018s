@@ -1,5 +1,7 @@
 #include <org\segames\library\exception.h>
 
+#include <org\segames\library\core.h>
+
 #include <iostream>
 
 namespace org
@@ -18,11 +20,14 @@ namespace org
 			Exception::Exception(const std::string& message) :
 				std::exception(message.c_str()),
 				hasMessage(message.length() != 0)
-			{}
+			{
+				if (hasMessage)
+					print();
+			}
 
 			void Exception::print() const
 			{
-				print(std::cerr);
+				print(Core::getErr());
 			}
 
 			void Exception::print(const std::ostream& stream) const

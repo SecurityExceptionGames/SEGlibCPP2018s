@@ -48,7 +48,7 @@ namespace org
 						* @param[in] initialCapacity The initial capacity of the backing buffer in the arraylist
 					*/
 					ArrayList(const size_t initialCapacity) :
-						Collection<T>(initialCapacity > 0 ? initialCapacity : 1),
+						Collection<T>(initialCapacity > 0 ? initialCapacity : 0),
 						writeHead(ZERO)
 					{}
 
@@ -57,7 +57,7 @@ namespace org
 						* @param[in] list The content to create the arraylist from
 					*/
 					ArrayList(const std::initializer_list<T>& list) :
-						Collection<T>(list.size() > 0 ? list.size() : 1),
+						Collection<T>(list.size() > 0 ? list.size() : 0),
 						writeHead(list.size())
 					{
 						if (memory.isPrimitive())

@@ -11,7 +11,18 @@ namespace org
 
 			size_t Object::hashCode() const
 			{
-				return typeid(*this).hash_code();
+				size_t code = 0;
+				char* ptr = (char*)this;
+				for (int i = 0; i < sizeof(*this); i++)
+				{
+					size_t addend = *ptr;
+					for (int e = 0; e < i; e++)
+						addend *= *ptr;
+					code += addend;
+
+					ptr++;
+				}
+				return code;
 			}
 
 			std::string Object::toString() const

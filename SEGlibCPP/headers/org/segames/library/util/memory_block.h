@@ -54,23 +54,27 @@ namespace org
 					T* allocMem(const size_t count)
 					{
 						T* tempPtr = nullptr;
-						if (primitive)
-							tempPtr = (T*)calloc(count, sizeof(T));
-						else
+						if (count > 0)
 						{
-							try
+							if (primitive)
+								tempPtr = (T*)calloc(count, sizeof(T));
+							else
 							{
-								tempPtr = new T[count];
-							}
-							catch (const std::exception&)
-							{
-								tempPtr = nullptr;
+								try
+								{
+									tempPtr = new T[count];
+								}
+								catch (const std::exception&)
+								{
+									tempPtr = nullptr;
+								}
+
 							}
 
+							if (!tempPtr)
+								throw MemoryException("Could not alloc memory. Out of RAM?");
 						}
 
-						if (!tempPtr)
-							throw MemoryException("Could not alloc memory. Out of RAM?");
 						return tempPtr;
 					}
 

@@ -1,7 +1,7 @@
 #pragma once
-#include <org/segames/library/object.h>
-#include <org/segames/library/index_out_of_bounds_exception.h>
-#include <org/segames/library/invalid_value_exception.h>
+#include <org\segames\library\object.h>
+#include <org\segames\library\index_out_of_bounds_exception.h>
+#include <org\segames\library\invalid_value_exception.h>
 
 namespace org
 {
