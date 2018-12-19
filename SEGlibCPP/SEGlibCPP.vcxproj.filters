@@ -63,6 +63,15 @@
     <ClCompile Include="sources\org\segames\library\core.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\org\segames\library\io\json_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\org\segames\library\io\json_entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\org\segames\library\io\json_array.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\org\segames\library\object.h">
@@ -149,7 +158,13 @@
     <ClInclude Include="headers\org\segames\library\core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Fuuff.h">
+    <ClInclude Include="headers\org\segames\library\io\json_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\org\segames\library\io\json_entry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\org\segames\library\io\json_array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

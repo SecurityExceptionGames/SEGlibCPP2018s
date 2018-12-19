@@ -6,6 +6,9 @@
 //	SEG_API_DEBUG					Enables all debug macros
 //	SEG_API_DEBUG_THROW				Enables throwing of debug exception, eg. index out of bounds
 //	SEG_API_MEMORY_HANDLING_STRICT	Enforces stricter memory handling, eg. no memory blocks of void
+//
+//	SEG_API_VECMATH_NO_TYPEDEFS		Disables the typedefs in vecmath.h
+//
 //	SEG_API_ARRAY_LIST_CAPACITY		Standard start capacity of org::segames::library::util::ArrayList, standard value is 32
 
 #ifdef SEG_API_DEBUG //Enables all debug macros

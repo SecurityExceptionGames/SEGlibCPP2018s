@@ -141,9 +141,9 @@ namespace org
 						Returns a copy of the element at the given index
 						* @param[in] index The index of the element
 					*/
-					virtual T peek(const size_t index) const
+					virtual T& peek(const size_t index) const
 					{
-						return (T)((Collection<T>&)*this).get(index);
+						return (T&)((Collection<T>&)*this).get(index);
 					}
 
 					/*

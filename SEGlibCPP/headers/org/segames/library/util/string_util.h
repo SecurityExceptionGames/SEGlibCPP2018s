@@ -141,16 +141,16 @@ namespace org
 				const bool parseBool(const std::string& src);
 
 				/*
-					Parses a signed integer if one exists from the given string
+					Parses an integer if one exists from the given string
 					* @param[in] src The source string
 				*/
-				const signed int parseInt(const std::string& src);
+				const int parseInt(const std::string& src);
 
 				/*
-					Parses a signed long long if one exists from the given string
+					Parses a long long if one exists from the given string
 					* @param[in] src The source string
 				*/
-				const signed long long parseLong(const std::string& src);
+				const long long parseLong(const std::string& src);
 
 				/*
 					Parses a float if one exists from the given string

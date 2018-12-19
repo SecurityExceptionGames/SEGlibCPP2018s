@@ -491,10 +491,7 @@ namespace org
 				*/
 				template<typename T, typename T2, int dim> inline BasicVector<T, dim> operator+(const BasicVector<T, dim>& a, const BasicVector<T2, dim>& b)
 				{
-					BasicVector<T, dim> out;
-					for (int i = 0; i < dim; i++)
-						out[i] = (T)(a.peek(i) + b.peek(i));
-					return out;
+					return BasicVector<T, dim>(a) += b;
 				}
 				
 				/*
@@ -504,15 +501,12 @@ namespace org
 				*/
 				template<typename T, typename T2, int dim> inline BasicVector<T, dim> operator-(const BasicVector<T, dim>& a, const BasicVector<T2, dim>& b)
 				{
-					BasicVector<T, dim> out;
-					for (int i = 0; i < dim; i++)
-						out[i] = (T)(a.peek(i) - b.peek(i));
-					return out;
+					return BasicVector<T, dim>(a) -= b;
 				}
 
 				/*
 					Fills the given vector with random numbers in the range [0, 1)
-					* @param[in] a The vector to fill
+					* @param[out] a The vector to fill
 				*/
 				template<typename T, int dim> inline void rand(BasicVector<T, dim>& a)
 				{
@@ -522,7 +516,7 @@ namespace org
 
 				/*
 					Fills the given vector with random numbers in the range [0, 1)
-					* @param[in] a The vector to fill
+					* @param[out] a The vector to fill
 				*/
 				template<int dim> inline void rand(BasicVector<float, dim>& a)
 				{
@@ -532,13 +526,13 @@ namespace org
 
 				/*
 					Fills the given vector with the given value
-					* @param[in] a The vector to fill
+					* @param[out] a The vector to fill
 					* @param[in] value The value to fill the vector with
 				*/
-				template<typename T, int dim> inline void fill(BasicVector<T, dim>& a, const T value)
+				template<typename T, typename T2, int dim> inline void fill(BasicVector<T, dim>& a, const T2 value)
 				{
 					for (int i = 0; i < dim; i++)
-						a[i] = value;
+						a[i] = (T)value;
 				}
 
 				/*
@@ -572,27 +566,284 @@ namespace org
 						for (int e = 0; e < dim - 1; e++)
 							for (int r = e + 1; r < dim; r++)
 							{
-								T multiple = a.peek(r, e) / a.peek(e, e);
+								T multiple = temp.peek(r, e) / temp.peek(e, e);
 								for (int c = e; c < dim; c++)
-									a[r][c] -= multiple * a.peek(e, c);
+									temp[r][c] -= multiple * temp.peek(e, c);
 							}
 						for (int i = 0; i < dim; i++)
-							val *= a.peek(i, i);
-						return det;
+							val *= temp.peek(i, i);
+						return val;
 					}
 
 				}
 
-
-				// TODO Add operator overrides and generic functions like dot() and inv()
-				// Under this line there is currently only debugg content
+				/*
+					Returns a copy of the row of the given index of the given matrix
+					* @param[in] i The row index
+					* @param[in] a The matrix
+				*/
+				template<typename T, int rows, int cols> inline BasicVector<T, cols> row(const int i, const BasicMatrix<T, rows, cols>& a)
+				{
+					BasicVector<T, cols> out;
+					for (int j = 0; j < cols; j++)
+						out[j] = a.peek(i, j);
+					return out;
+				}
 
 				/*
-					~~~~~~~~~~~~~~~~~~~~~~~~~~~
-					This is a temporary comment
-					~~~~~~~~~~~~~~~~~~~~~~~~~~~
+					Returns a copy of the column of the given index of the given matrix
+					* @param[in] j The column index
+					* @param[in] a The matrix
 				*/
-				
+				template<typename T, int rows, int cols> inline BasicVector<T, rows> column(const int j, const BasicMatrix<T, rows, cols>& a)
+				{
+					BasicVector<T, rows> out;
+					for (int i = 0; i < rows; i++)
+						out[i] = a.peek(i, j);
+					return out;
+				}
+
+				/*
+					Runs a partial gauss elimination
+					* @param[in/out] a The matrix to partially reduce
+				*/
+				template<typename T, int dim> void partialGauss(BasicMatrix<T, dim, dim>& a)
+				{
+					int indices[dim];
+					partialGauss(a, indices);
+				}
+
+				/*
+					Runs a partial gauss elimination and stores the pivoting elements in the given array
+					* @param[in/out] a The matrix to partially reduce
+					* @param[out] index The array of pivot element indices for each row
+				*/
+				template<typename T, int dim> void partialGauss(BasicMatrix<T, dim, dim>& a, int* index)
+				{
+					for (int i = 0; i < dim; i++)
+						index[i] = i;
+
+					//Rescaling factors
+					T c[dim];
+					for (int i = 0; i < dim; i++)
+					{
+						T c1 = 0;
+						for (int j = 0; j < dim; j++)
+						{
+							T c0 = abs(a[i][j]);
+							if (c0 > c1)
+								c1 = c0;
+						}
+						c[i] = c1;
+					}
+
+					//Pivoting element
+					int k = 0;
+					for (int j = 0; j < dim - 1; j++)
+					{
+						T pi1 = 0;
+						for (int i = j; i < dim; i++)
+						{
+							T pi0 = abs(a[index[i]][j]);
+							pi0 /= c[index[i]];
+
+							if (pi0 > pi1)
+							{
+								pi1 = pi0;
+								k = i;
+							}
+
+						}
+
+						std::swap(index[j], index[k]);
+						for (int i = j + 1; i < dim; i++)
+						{
+							T pj = (a[index[i]][j] /= a[index[j]][j]);
+							for (int l = j + 1; l < dim; l++)
+								a[index[i]][l] -= pj * a[index[i]][l];
+						}
+
+					}
+
+				}
+
+				/*
+					Calculates and retruns the inverse of the given matrix
+					* @param[in] a The matrix to invert
+				*/
+				template<typename T, int dim> BasicMatrix<T, dim, dim> inv(const BasicMatrix<T, dim, dim>& a)
+				{
+					int index[dim];
+					BasicMatrix<T, dim, dim> out;
+					BasicMatrix<T, dim, dim> cloned = a;
+
+					T bi[dim][dim];
+					for (int i = 0; i < dim; i++)
+						for (int j = 0; j < dim; j++)
+							bi[i][j] = (i == j);
+
+					partialGauss(cloned, index);
+
+					for (int i = 0; i < dim - 1; i++)
+						for (int j = i + 1; j < dim; j++)
+							for (int k = 0; k < dim; k++)
+								bi[index[j]][k] -= cloned[index[j]][i] * bi[index[i]][k];
+
+					for (int i = 0; i < dim; i++)
+					{
+						out[dim - 1][i] = bi[index[dim - 1]][i] / cloned[index[dim - 1]][dim - 1];
+
+						for (int j = dim - 2; j >= 0; j--)
+						{
+							out[j][i] = bi[index[j]][i];
+
+							for (int k = j + 1; k < dim; k++)
+								out[j][i] -= cloned[index[j]][k] * out[k][i];
+							out[j][i] /= cloned[index[j]][j];
+						}
+
+					}
+
+					return out;
+				}
+
+				/*
+					Creates and returns the transpose of the given matrix
+					* @param[in] a The matrix to transpose
+				*/
+				template<typename T, int rows, int cols> inline BasicMatrix<T, cols, rows> transpose(const BasicMatrix<T, rows, cols>& a)
+				{
+					BasicMatrix<T, cols, rows> out;
+					for (int i = 0; i < rows; i++)
+						for (int j = 0; j < cols; j++)
+							out[j][i] = a.peek(i, j);
+					return out;
+				}
+
+				/*
+					Adds the given matrices
+					* @param[in] a The first matrix
+					* @param[in] b The second matrix
+				*/
+				template<typename T, typename T2, int rows, int cols> inline BasicMatrix<T, rows, cols> operator+(
+					const BasicMatrix<T, rows, cols>& a,
+					const BasicMatrix<T2, rows, cols>& b
+					)
+				{
+					return BasicMatrix<T, rows, cols>(a) += b;
+				}
+
+				/*
+					Subtracts second matrix from the first
+					* @param[in] a The first matrix
+					* @param[in] b The second matrix
+				*/
+				template<typename T, typename T2, int rows, int cols> inline BasicMatrix<T, rows, cols> operator-(
+					const BasicMatrix<T, rows, cols>& a,
+					const BasicMatrix<T2, rows, cols>& b
+					)
+				{
+					return BasicMatrix<T, rows, cols>(a) -= b;
+				}
+
+				/*
+					Multiplies the given matrix by the given scalar
+					* @param[in] scalar The scalar
+					* @param[in] a The matrix
+				*/
+				template<typename T, typename T2, int rows, int cols> inline BasicMatrix<T, rows, cols> operator*(
+					const T2 scalar,
+					const BasicMatrix<T, rows, cols>& a
+					)
+				{
+					return BasicMatrix<T, rows, cols>(a) *= scalar;
+				}
+
+				/*
+					Multiplies the given matrix by the given scalar
+					* @param[in] a The matrix
+					* @param[in] scalar The scalar
+				*/
+				template<typename T, typename T2, int rows, int cols> inline BasicMatrix<T, rows, cols> operator*(
+					const BasicMatrix<T, rows, cols>& a,
+					const T2 scalar
+					)
+				{
+					return scalar * a;
+				}
+
+				/*
+					Multiplies the given matrices
+					* @param[in] a The first matrix
+					* @param[in] b The second matrix
+				*/
+				template<typename T, typename T2, int rows, int colsA, int colsB> inline BasicMatrix<T, rows, colsB> operator*(
+					const BasicMatrix<T, rows, colsA>& a,
+					const BasicMatrix<T2, colsA, colsB>& b
+					)
+				{
+					BasicMatrix<T, rows, colsB> out;
+					for (int i = 0; i < rows; i++)
+						for (int j = 0; j < colsB; j++)
+							out[i][j] = dot(row(i, a), column(j, b));
+					return out;
+				}
+
+				/*
+					Fills the matrix in with identity matrix data, ie. zeros with ones along the diagonal
+					* @param[in] a The matrix
+				*/
+				template<typename T, int rows, int cols> inline void identity(BasicMatrix<T, rows, cols>& a)
+				{
+					for (int i = 0; i < rows; i++)
+						for (int j = 0; j < cols; j++)
+							a[i][j] = (T)(i == j);
+				}
+
+				/*
+					Fills the matrix with zeros
+					* @param[in] a The matrix
+				*/
+				template<typename T, int rows, int cols> inline void zeros(BasicMatrix<T, rows, cols>& a)
+				{
+					fill(a, ZERO);
+				}
+
+				/*
+					Fills the matrix with the given value
+					* @param[in] a The matrix
+					* @param[in] value The value
+				*/
+				template<typename T, typename T2, int rows, int cols> inline void fill(BasicMatrix<T, rows, cols>& a, const T2 value)
+				{
+					for (int i = 0; i < rows; i++)
+						for (int j = 0; j < cols; j++)
+							a[i][j] = (T)value;
+				}
+
+				/*
+					Fills the matrix with random data in range [0, 1)
+					* @param[in] a The matrix
+				*/
+				template<typename T, int rows, int cols> inline void rand(BasicMatrix<T, rows, cols>& a)
+				{
+					for (int i = 0; i < rows; i++)
+						for (int j = 0; j < cols; j++)
+							a[i][j] = (T)random();
+				}
+
+				/*
+					Fills the matrix with random data in range [0, 1)
+					* @param[in] a The matrix
+				*/
+				template<int rows, int cols> inline void rand(BasicMatrix<float, rows, cols>& a)
+				{
+					for (int i = 0; i < rows; i++)
+						for (int j = 0; j < cols; j++)
+							a[i][j] = randomf();
+				}
+
+#ifndef SEG_API_VECMATH_NO_TYPEDEFS
 
 				template<int dim> using Vector = BasicVector<double, dim>;
 				template<int dim> using Vectorf = BasicVector<float, dim>;
@@ -600,7 +851,27 @@ namespace org
 				using vec2 = Vector<2>;
 				using vec3 = Vector<3>;
 				using vec4 = Vector<4>;
+				using vec2f = Vectorf<2>;
+				using vec3f = Vectorf<3>;
+				using vec4f = Vectorf<4>;
+				using vec2l = Vectorl<2>;
+				using vec3l = Vectorl<3>;
+				using vec4l = Vectorl<4>;
 
+				template<int rows, int cols> using Matrix = BasicMatrix<double, rows, cols>;
+				template<int rows, int cols> using Matrixf = BasicMatrix<float, rows, cols>;
+				template<int rows, int cols> using Matrixl = BasicMatrix<long double, rows, cols>;
+				using mat2 = Matrix<2, 2>;
+				using mat3 = Matrix<3, 3>;
+				using mat4 = Matrix<4, 4>;
+				using mat2f = Matrixf<2, 2>;
+				using mat3f = Matrixf<3, 3>;
+				using mat4f = Matrixf<4, 4>;
+				using mat2l = Matrixl<2, 2>;
+				using mat3l = Matrixl<3, 3>;
+				using mat4l = Matrixl<4, 4>;
+
+#endif
 			}
 
 		}

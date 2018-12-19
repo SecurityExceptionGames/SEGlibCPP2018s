@@ -102,6 +102,9 @@
     <ClCompile Include="sources\org\segames\library\index_out_of_bounds_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\invalid_value_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\io\file.cpp" />
+    <ClCompile Include="sources\org\segames\library\io\json_array.cpp" />
+    <ClCompile Include="sources\org\segames\library\io\json_entry.cpp" />
+    <ClCompile Include="sources\org\segames\library\io\json_object.cpp" />
     <ClCompile Include="sources\org\segames\library\math\math.cpp" />
     <ClCompile Include="sources\org\segames\library\memory_exception.cpp" />
     <ClCompile Include="sources\org\segames\library\null_pointer_exception.cpp" />
@@ -111,7 +114,6 @@
     <ClCompile Include="sources\org\segames\library\util\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Fuuff.h" />
     <ClInclude Include="headers\org\segames\library\array_index_out_of_bounds_exception.h" />
     <ClInclude Include="headers\org\segames\library\core.h" />
     <ClInclude Include="headers\org\segames\library\dllmain.h" />
@@ -119,6 +121,9 @@
     <ClInclude Include="headers\org\segames\library\index_out_of_bounds_exception.h" />
     <ClInclude Include="headers\org\segames\library\invalid_value_exception.h" />
     <ClInclude Include="headers\org\segames\library\io\file.h" />
+    <ClInclude Include="headers\org\segames\library\io\json_array.h" />
+    <ClInclude Include="headers\org\segames\library\io\json_entry.h" />
+    <ClInclude Include="headers\org\segames\library\io\json_object.h" />
     <ClInclude Include="headers\org\segames\library\library.h" />
     <ClInclude Include="headers\org\segames\library\math\math.h" />
     <ClInclude Include="headers\org\segames\library\math\vecmath.h" />

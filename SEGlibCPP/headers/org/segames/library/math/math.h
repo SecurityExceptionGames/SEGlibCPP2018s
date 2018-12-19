@@ -14,6 +14,17 @@ namespace org
 			{
 
 				/*
+					Returns the absolute of the given value
+					* @param[in] value The value
+				*/
+				template<typename T> inline T abs(const T value)
+				{
+					if (value < 0)
+						return -value;
+					return value;
+				}
+
+				/*
 					A function that clamps the given value between the given minimum and maximum limit
 					* @param[in] value The value to clamp
 					* @param[in] min The minimum limit

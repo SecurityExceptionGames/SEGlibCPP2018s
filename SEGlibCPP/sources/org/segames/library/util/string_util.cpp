@@ -95,17 +95,13 @@ namespace org
 					throw InvalidValueException("The given string does not contain a boolean.");
 				}
 
-				inline const signed int parseInt(const std::string& src)
+				inline const int parseInt(const std::string& src)
 				{
-					if (src.find(".") != std::string::npos)
-						throw InvalidValueException("The given string contains a period, could possibly be a float and not an integer.");
 					return std::stoi(src);
 				}
 
-				const signed long long parseLong(const std::string& src)
+				inline const long long parseLong(const std::string& src)
 				{
-					if (src.find(".") != std::string::npos)
-						throw InvalidValueException("The given string contains a period, could possibly be a float and not a long long.");
 					return std::stoll(src);
 				}
 
